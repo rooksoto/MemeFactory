@@ -1,6 +1,9 @@
 package rooksoto.c4q.nyc.memefactory.View;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,14 +14,21 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import rooksoto.c4q.nyc.memefactory.R;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by ashiquechowdhury on 1/12/17.
  */
 
 public class StartScreenFragment extends Fragment {
-    private static final int PHOTO_CHOSE = 0;
+    public static final String MEME_PHOTO = "nyc.c4q.ashiquechowdhury.MEMEPHOTO";
+    private static final int GALLERY_REQUEST_CODE = 0;
+    private static final int CAMERA_REQUEST_CODE = 1;
     private ImageView memeLogoIView;
     private ImageView cameraIView;
     private ImageView galleryIView;
@@ -51,7 +61,7 @@ public class StartScreenFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivity(intent);
+                startActivityForResult(intent, CAMERA_REQUEST_CODE);
             }
         };
     }
@@ -62,8 +72,34 @@ public class StartScreenFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                startActivityForResult(intent, PHOTO_CHOSE);
+                startActivityForResult(intent, GALLERY_REQUEST_CODE);
             }
         };
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE){
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+
+            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            intent.putExtra(MEME_PHOTO, image);
+            startActivity(intent);
+        }
+
+        if(resultCode == RESULT_OK && requestCode == GALLERY_REQUEST_CODE){
+            Uri selectedImage = data.getData();
+            InputStream imageStream = null;
+            try {
+                imageStream = getContext().getContentResolver().openInputStream(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            Bitmap image = BitmapFactory.decodeStream(imageStream);
+
+            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            intent.putExtra(MEME_PHOTO, image);
+            startActivity(intent);
+        }
     }
 }
