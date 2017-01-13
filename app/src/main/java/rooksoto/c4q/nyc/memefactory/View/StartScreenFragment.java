@@ -28,7 +28,7 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class StartScreenFragment extends Fragment {
-    public static final String MEME_PHOTO = "nyc.c4q.ashiquechowdhury.MEMEPHOTO";
+    public static final String MEME_FILE_NAME = "meme_bitmap.png";
     private static final int GALLERY_REQUEST_CODE = 0;
     private static final int CAMERA_REQUEST_CODE = 1;
     private ImageView memeLogoIView;
@@ -81,26 +81,16 @@ public class StartScreenFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE){
+        if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE) {
             Bitmap image = (Bitmap) data.getExtras().get("data");
-            try {
-                String filename = "meme_bitmap.png";
-                FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
-                image.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
-                stream.close();
-                image.recycle();
-
-                Intent intent = new Intent(getContext(), PhotoActivity.class);
-                intent.putExtra("image", filename);
-                startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            setupBitmapImage(image);
+            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            intent.putExtra("image", MEME_FILE_NAME);
+            startActivity(intent);
         }
 
-        if(resultCode == RESULT_OK && requestCode == GALLERY_REQUEST_CODE){
+        if (resultCode == RESULT_OK && requestCode == GALLERY_REQUEST_CODE) {
             Uri selectedImage = data.getData();
             InputStream imageStream = null;
             try {
@@ -110,20 +100,23 @@ public class StartScreenFragment extends Fragment {
             }
             Bitmap image = BitmapFactory.decodeStream(imageStream);
 
-            try {
-                String filename = "meme_bitmap.png";
-                FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
-                image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            setupBitmapImage(image);
+            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            intent.putExtra("image", MEME_FILE_NAME);
+            startActivity(intent);
+        }
+    }
 
-                stream.close();
-                image.recycle();
+    private void setupBitmapImage(Bitmap image) {
+        try {
+            String filename = "meme_bitmap.png";
+            FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
+            image.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
-                Intent intent = new Intent(getContext(), PhotoActivity.class);
-                intent.putExtra("image", filename);
-                startActivity(intent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            stream.close();
+            image.recycle();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
