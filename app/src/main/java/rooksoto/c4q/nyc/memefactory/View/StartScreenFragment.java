@@ -84,7 +84,7 @@ public class StartScreenFragment extends Fragment {
         if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE) {
             Bitmap image = (Bitmap) data.getExtras().get("data");
 
-            setupBitmapImage(image);
+            compressBitmap(image);
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             intent.putExtra("image", MEME_FILE_NAME);
             startActivity(intent);
@@ -100,14 +100,14 @@ public class StartScreenFragment extends Fragment {
             }
             Bitmap image = BitmapFactory.decodeStream(imageStream);
 
-            setupBitmapImage(image);
+            compressBitmap(image);
             Intent intent = new Intent(getContext(), PhotoActivity.class);
             intent.putExtra("image", MEME_FILE_NAME);
             startActivity(intent);
         }
     }
 
-    private void setupBitmapImage(Bitmap image) {
+    private void compressBitmap(Bitmap image) {
         try {
             String filename = "meme_bitmap.png";
             FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
