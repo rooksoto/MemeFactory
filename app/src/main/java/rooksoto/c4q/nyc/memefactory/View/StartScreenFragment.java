@@ -58,7 +58,7 @@ public class StartScreenFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Clicked Camera", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), "Clicked Gallery", Toast.LENGTH_LONG).show();
             }
         };
     }
