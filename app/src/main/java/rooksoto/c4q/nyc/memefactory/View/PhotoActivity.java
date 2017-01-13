@@ -1,12 +1,13 @@
 package rooksoto.c4q.nyc.memefactory.View;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import java.io.FileInputStream;
+import java.io.IOException;
 
 import rooksoto.c4q.nyc.memefactory.R;
 
@@ -23,16 +24,15 @@ public class PhotoActivity extends AppCompatActivity{
 
         memePhotoImageView = (ImageView) findViewById(R.id.meme_photo_IView);
 
-        Bitmap bmp = null;
-        String filename = getIntent().getStringExtra("image");
+        Uri memeImageUri = getIntent().getParcelableExtra(StartScreenFragment.IMAGEURI);
+        Bitmap bitmap = null;
+
         try {
-            FileInputStream is = this.openFileInput(filename);
-            bmp = BitmapFactory.decodeStream(is);
-            is.close();
-        } catch (Exception e) {
+            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), memeImageUri);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        memePhotoImageView.setImageBitmap(bmp);
+        memePhotoImageView.setImageBitmap(bitmap);
     }
 }
