@@ -1,5 +1,6 @@
 package rooksoto.c4q.nyc.memefactory.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import rooksoto.c4q.nyc.memefactory.R;
@@ -81,10 +83,21 @@ public class StartScreenFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
+            try {
+                String filename = "meme_bitmap.png";
+                FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
+                image.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
-            Intent intent = new Intent(getContext(), PhotoActivity.class);
-            intent.putExtra(MEME_PHOTO, image);
-            startActivity(intent);
+                stream.close();
+                image.recycle();
+
+                Intent intent = new Intent(getContext(), PhotoActivity.class);
+                intent.putExtra("image", filename);
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
         if(resultCode == RESULT_OK && requestCode == GALLERY_REQUEST_CODE){
@@ -97,9 +110,20 @@ public class StartScreenFragment extends Fragment {
             }
             Bitmap image = BitmapFactory.decodeStream(imageStream);
 
-            Intent intent = new Intent(getContext(), PhotoActivity.class);
-            intent.putExtra(MEME_PHOTO, image);
-            startActivity(intent);
+            try {
+                String filename = "meme_bitmap.png";
+                FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
+                image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+                stream.close();
+                image.recycle();
+
+                Intent intent = new Intent(getContext(), PhotoActivity.class);
+                intent.putExtra("image", filename);
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
