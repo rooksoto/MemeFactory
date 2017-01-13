@@ -35,7 +35,7 @@
         android:id="@+id/logo_imageView"
         android:clickable="true"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>

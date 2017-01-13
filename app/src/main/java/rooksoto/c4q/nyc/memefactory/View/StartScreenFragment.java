@@ -1,5 +1,6 @@
 package rooksoto.c4q.nyc.memefactory.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -18,6 +18,7 @@ import rooksoto.c4q.nyc.memefactory.R;
  */
 
 public class StartScreenFragment extends Fragment {
+    private static final int PHOTO_CHOSE = 0;
     private ImageView memeLogoIView;
     private ImageView cameraIView;
     private ImageView galleryIView;
@@ -49,7 +50,8 @@ public class StartScreenFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Clicked Camera", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(intent);
             }
         };
     }
@@ -58,7 +60,9 @@ public class StartScreenFragment extends Fragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Clicked Gallery", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PHOTO_CHOSE);
             }
         };
     }
