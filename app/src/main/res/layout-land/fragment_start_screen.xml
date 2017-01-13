@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_pattern"
+    android:paddingTop="30dp"
+    >
+
+    <ImageView
+        android:id="@+id/logo_imageView"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/camera_button"
+        android:background="@drawable/gold_ripple_circle"
+        android:clickable="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="30dp"
+        android:onClick="onClickCamera"
+        android:src="@drawable/camera_icon"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginStart="@dimen/camera_button_horizontal_margin"
+        />
+
+    <ImageView
+        android:id="@+id/gallery_button"
+        android:clickable="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/gallery_icon"
+        android:background="@drawable/gold_ripple_circle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="@dimen/camera_button_horizontal_margin"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
