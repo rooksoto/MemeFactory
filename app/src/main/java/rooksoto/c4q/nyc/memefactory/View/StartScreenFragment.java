@@ -39,7 +39,7 @@ public class StartScreenFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.start_screen_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_start_screen, container, false);
         return view;
     }
 
