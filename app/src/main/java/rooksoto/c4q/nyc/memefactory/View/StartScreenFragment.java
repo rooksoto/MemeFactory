@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,9 @@ public class StartScreenFragment extends Fragment {
                         .getApplicationContext()
                         .getExternalFilesDir(Environment.DIRECTORY_PICTURES);
                 output = new File(imageLocation, IMAGEFILENAME);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(output));
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(
+                        getContext(),
+                        getContext().getApplicationContext().getPackageName() + ".provider", output));
                 startActivityForResult(intent, CAMERA_REQUEST_CODE);
             }
         };
@@ -98,7 +101,7 @@ public class StartScreenFragment extends Fragment {
             startActivity(intent);
         }
 
-        if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE){
+        if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE) {
             Toast.makeText(getContext(), "Saved to Gallery", Toast.LENGTH_LONG).show();
         }
     }
