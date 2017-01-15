@@ -4,11 +4,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import java.io.IOException;
 
+import rooksoto.c4q.nyc.memefactory.Presenter.MemePagerAdapter;
 import rooksoto.c4q.nyc.memefactory.R;
 
 /**
@@ -16,13 +18,18 @@ import rooksoto.c4q.nyc.memefactory.R;
  */
 public class PhotoActivity extends AppCompatActivity{
     private ImageView memePhotoImageView;
+    private MemePagerAdapter adapterViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meme_photo);
+        setContentView(R.layout.vpager_photo);
 
-        memePhotoImageView = (ImageView) findViewById(R.id.meme_photo_IView);
+        ViewPager vPager = (ViewPager) findViewById(R.id.vpager_photo);
+        adapterViewPager = new MemePagerAdapter(getSupportFragmentManager());
+        vPager.setAdapter(adapterViewPager);
+
+//        memePhotoImageView = (ImageView) findViewById(R.id.meme_photo_IView);
 
         Uri memeImageUri = getIntent().getParcelableExtra(StartScreenFragment.IMAGEURI);
         Bitmap bitmap = null;
@@ -33,6 +40,6 @@ public class PhotoActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
-        memePhotoImageView.setImageBitmap(bitmap);
+//
     }
 }
