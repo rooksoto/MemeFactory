@@ -12,8 +12,6 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-
 import rooksoto.c4q.nyc.memefactory.R;
 
 /**
@@ -22,7 +20,8 @@ import rooksoto.c4q.nyc.memefactory.R;
 
 public class DogeFragment extends Fragment implements View.OnTouchListener {
 
-    File file;
+    public static final String PAGE = "1";
+    public static final String TITLE = "Doge Meme";
     Uri uri;
     Float dX;
     Float dY;
@@ -32,14 +31,16 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     private ImageView imageView;
 
 
+
+
     // The newInstance code isn't really necessary
     public static DogeFragment newInstance(/*File file,*/Uri uri, int page, String title) {
         DogeFragment dogeFragment = new DogeFragment();
 //        this.file = file;
         dogeFragment.uri = uri;
         Bundle args = new Bundle();
-        args.putInt("someInt", page);
-        args.putString("someTitle", title);
+        args.putInt(PAGE, page);
+        args.putString(TITLE, title);
         dogeFragment.setArguments(args);
         return dogeFragment;
     }
@@ -56,13 +57,6 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.meme_photo_IView);
-//        Bitmap bitmap = null;
-//
-//        try {
-//            bitmap = MediaStore.Images.Media.getBitmap(container.getContext().getContentResolver(), uri);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         Picasso.with(rootView.getContext()).load(uri).error(R.drawable.doge).into(imageView);
         return rootView;
     }
