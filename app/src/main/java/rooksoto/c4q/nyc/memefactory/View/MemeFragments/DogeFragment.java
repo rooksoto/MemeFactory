@@ -1,5 +1,6 @@
 package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -20,6 +23,7 @@ import rooksoto.c4q.nyc.memefactory.R;
 public class DogeFragment extends Fragment implements View.OnTouchListener {
 
     File file;
+    Uri uri;
     Float dX;
     Float dY;
 
@@ -29,15 +33,17 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
 
 
     // The newInstance code isn't really necessary
-    public DogeFragment newInstance(/*File file,*/ int page, String title) {
+    public static DogeFragment newInstance(/*File file,*/Uri uri, int page, String title) {
         DogeFragment dogeFragment = new DogeFragment();
 //        this.file = file;
+        dogeFragment.uri = uri;
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
         dogeFragment.setArguments(args);
         return dogeFragment;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +56,14 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.meme_photo_IView);
-        imageView.setImageResource(R.drawable.doge);
+//        Bitmap bitmap = null;
+//
+//        try {
+//            bitmap = MediaStore.Images.Media.getBitmap(container.getContext().getContentResolver(), uri);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        Picasso.with(rootView.getContext()).load(uri).error(R.drawable.doge).into(imageView);
         return rootView;
     }
 
