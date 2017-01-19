@@ -40,15 +40,12 @@ public class VanillaMemeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.vanilla_meme_fragment, container, false);
+
         ImageView memeImageView = (ImageView) view.findViewById(R.id.meme_imageview);
         EditText bottomTextEditor = (EditText) view.findViewById(R.id.bottom_text_editor);
         EditText topTextEditor = (EditText) view.findViewById(R.id.top_text_editor);
 
-        // edittext buttons not showing up
-        // Fix!
-
         Picasso.with(getContext()).load(uri).error(R.drawable.doge).into(memeImageView);
-
 
         return view;
     }
