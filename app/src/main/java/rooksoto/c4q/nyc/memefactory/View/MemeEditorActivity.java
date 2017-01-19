@@ -2,6 +2,7 @@ package rooksoto.c4q.nyc.memefactory.View;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,7 +12,7 @@ import rooksoto.c4q.nyc.memefactory.R;
 /**
  * Created by ashiquechowdhury on 1/12/17.
  */
-public class PhotoActivity extends AppCompatActivity{
+public class MemeEditorActivity extends AppCompatActivity{
     private MemePagerAdapter adapterViewPager;
 
     @Override
@@ -23,5 +24,8 @@ public class PhotoActivity extends AppCompatActivity{
         ViewPager vPager = (ViewPager) findViewById(R.id.vpager_photo);
         adapterViewPager = new MemePagerAdapter(getSupportFragmentManager(), memeImageUri);
         vPager.setAdapter(adapterViewPager);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(vPager);
     }
 }

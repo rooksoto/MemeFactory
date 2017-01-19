@@ -96,7 +96,7 @@ public class StartScreenFragment extends Fragment {
         if (resultCode == RESULT_OK && requestCode == GALLERY_REQUEST_CODE) {
             Uri imageUri = data.getData();
 
-            Intent intent = new Intent(getContext(), PhotoActivity.class);
+            Intent intent = new Intent(getContext(), MemeEditorActivity.class);
             intent.putExtra(IMAGEURI, imageUri);
             startActivity(intent);
         }
