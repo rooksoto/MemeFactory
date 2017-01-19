@@ -15,6 +15,8 @@ import rooksoto.c4q.nyc.memefactory.R;
 
 public class VanillaMemeFragment extends Fragment {
 
+    public static final String VAN_PAGE = "VANILLA PAGE NUM";
+    public static final String VAN_TITLE = "VANILLA TITLE";
     private int page;
     private String title;
     private Uri uri;
@@ -24,8 +26,8 @@ public class VanillaMemeFragment extends Fragment {
         VanillaMemeFragment vanillaMemeFragment = new VanillaMemeFragment();
         vanillaMemeFragment.uri = uri;
         Bundle args = new Bundle();
-        args.putInt("someInt", page);
-        args.putString("someTitle", title);
+        args.putInt(VAN_PAGE, page);
+        args.putString(VAN_TITLE, title);
         vanillaMemeFragment.setArguments(args);
         return vanillaMemeFragment;
     }
@@ -33,8 +35,8 @@ public class VanillaMemeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        page = getArguments().getInt("someInt", 0);
-        title = getArguments().getString("someTitle");
+        page = getArguments().getInt(VAN_PAGE, 0);
+        title = getArguments().getString(VAN_TITLE);
     }
 
     @Override

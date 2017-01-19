@@ -13,7 +13,7 @@ import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
  */
 
 public class MemePagerAdapter extends FragmentPagerAdapter {
-    private static int NUM_ITEMS = 2;
+    private static int PAGE_COUNT = 2;
     private Uri uri;
 
     public MemePagerAdapter(FragmentManager fm, Uri uri) {
@@ -23,7 +23,7 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return NUM_ITEMS;
+        return PAGE_COUNT;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return DogeFragment.newInstance(uri, 0, "Doge");
             case 1:
-                return VanillaMemeFragment.newInstance(uri, 1, "Standard");
+                return VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
             default:
                 return null;
         }
@@ -40,8 +40,13 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position == 0) return "Dodge Meme Editor";
-        if (position == 1) return "Standard Meme Editor";
-        return "Page" + position;
+        switch (position) {
+            case 0:
+                return "Doge";
+            case 1:
+                return "Vanilla";
+            default:
+                return "Page" + position;
+        }
     }
 }
