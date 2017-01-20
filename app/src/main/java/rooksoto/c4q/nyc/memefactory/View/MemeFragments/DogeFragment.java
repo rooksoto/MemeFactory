@@ -29,6 +29,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     private String title;
     private int page;
     private ImageView imageView;
+    private View rootView;
 
 
     public static DogeFragment newInstance(Uri uri, int page, String title) {
@@ -51,7 +52,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
+        rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.meme_photo_IView);
         Picasso.with(rootView.getContext()).load(uri).error(R.drawable.doge).into(imageView);
         return rootView;
@@ -60,9 +61,17 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView.setOnTouchListener(this);
+//        imageView.setOnTouchListener(this);
 
     }
+
+//    private View.OnClickListener handleClick = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//
+//        }
+//    }
+
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
