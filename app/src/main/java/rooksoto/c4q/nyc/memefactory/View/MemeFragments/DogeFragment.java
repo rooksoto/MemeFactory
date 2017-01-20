@@ -13,10 +13,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rooksoto.c4q.nyc.memefactory.R;
 
@@ -36,7 +39,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     private int page;
     private ImageView imageView;
     private View rootView;
-    private EditText captionText;
+    private List<EditText> captionTvs = new ArrayList<>();
 
 
     public static DogeFragment newInstance(Uri uri, int page, String title) {
@@ -100,18 +103,18 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     @Override
     public boolean onLongClick(View view) {
         Toast.makeText(view.getContext(), "EditText should appear here", Toast.LENGTH_LONG).show();
-        LinearLayout myLayout = (LinearLayout) rootView.findViewById(R.id.fragment_layout);
-        captionText = new EditText(view.getContext());
+        RelativeLayout myLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_layout);
+        EditText captionText = new EditText(view.getContext());
         Typeface typeface = Typeface.createFromAsset(view.getContext().getAssets(), "LDFComicSans.ttf");
-        captionText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        captionText.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         myLayout.addView(captionText);
         captionText.setTypeface(typeface);
         ((InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
                 .toggleSoftInput(InputMethodManager.SHOW_FORCED,
                         InputMethodManager.HIDE_IMPLICIT_ONLY);
         captionText.requestFocus();
-
         captionText.setOnTouchListener(this);
+        captionTvs.add(captionText);
         return true;
     }
 }
