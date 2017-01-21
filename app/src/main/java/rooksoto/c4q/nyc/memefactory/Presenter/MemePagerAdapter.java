@@ -52,9 +52,9 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return "Vanilla";
             case 2:
-                return "Paint!";
-            case 3:
                 return "Sticker";
+            case 3:
+                return "Paint!";
             default:
                 return "Page" + position;
         }
