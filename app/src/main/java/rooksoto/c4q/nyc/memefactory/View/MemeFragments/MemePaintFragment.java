@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -31,6 +30,8 @@ import rooksoto.c4q.nyc.memefactory.View.Custom.DrawableCanvasView;
 
 public class MemePaintFragment extends Fragment implements View.OnClickListener {
 
+    private static final String MPF_PAGE = "MPF PAGE NUM";
+    private static final String MPF_TITLE = "MPF TITLE";
     private Uri uri;
 
     private DrawableCanvasView drawableCanvasView;
@@ -48,6 +49,9 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
     private CardView cvStroke;
     private CardView cvSave;
 
+    private int page;
+    private String title;
+
     public MemePaintFragment() {
     }
 
@@ -55,8 +59,17 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
         MemePaintFragment memePaintFragment = new MemePaintFragment();
         memePaintFragment.uri = uri;
         Bundle args = new Bundle();
+        args.putInt(MPF_PAGE, page);
+        args.putString(MPF_TITLE, title);
         memePaintFragment.setArguments(args);
         return memePaintFragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        page = getArguments().getInt(MPF_PAGE, 0);
+        title = getArguments().getString(MPF_TITLE);
     }
 
     @Override
@@ -181,7 +194,6 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
         sbBlue.setProgress(Color.blue(color));
 
         selectColor.setOnClickListener(this);
-
 
         isDialogVisible = true;
         dialogInterface.show();
