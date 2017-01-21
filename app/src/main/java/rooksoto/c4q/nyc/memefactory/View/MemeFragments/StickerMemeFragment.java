@@ -53,7 +53,7 @@ public class StickerMemeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Picasso.with(getContext()).load(uri).fit().into(memeImageView);
+        Picasso.with(getContext()).load(uri).into(memeImageView);
 
 
         FrameLayout canvas = (FrameLayout) view.findViewById(R.id.my_sticker_frame);
