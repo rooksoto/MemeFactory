@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.MemePaintFragment;
@@ -20,6 +21,7 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
     private DogeFragment dogeFrag;
     private VanillaMemeFragment vanillaFrag;
     private MemePaintFragment paintFrag;
+    private StickerMemeFragment stickerFrag;
 
     public MemePagerAdapter(FragmentManager fm, Uri uri) {
         super(fm);
@@ -41,7 +43,8 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
                 vanillaFrag = VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
                 return vanillaFrag;
             case 2:
-                return StickerMemeFragment.newInstance(uri, 2, "Sticker!");
+                stickerFrag = StickerMemeFragment.newInstance(uri, 2, "Sticker!");
+                return stickerFrag;
             case 3:
                 paintFrag = MemePaintFragment.newInstance(uri, 3, "Paint!");
                 return paintFrag;
@@ -66,19 +69,23 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-//    @Override
-//    public Object instantiateItem(ViewGroup container, int position) {
-//        Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
-//        switch (position) {
-//            case 0:
-//                dogeFrag = (DogeFragment) createdFragment;
-//                break;
-//            case 1:
-//                vanillaFrag = (VanillaMemeFragment) createdFragment;
-//                break;
-//            case 2:
-//                paintFrag = (MemePaintFragment) createdFragment;
-//        }
-//        return createdFragment;
-//    }
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
+        switch (position) {
+            case 0:
+                dogeFrag = (DogeFragment) createdFragment;
+                break;
+            case 1:
+                vanillaFrag = (VanillaMemeFragment) createdFragment;
+                break;
+            case 2:
+                stickerFrag = (StickerMemeFragment) createdFragment;
+                break;
+            case 3:
+                paintFrag = (MemePaintFragment) createdFragment;
+                break;
+        }
+        return createdFragment;
+    }
 }
