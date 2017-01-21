@@ -5,9 +5,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_top_buttons"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <TextView
+            android:text="File Name:"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark" />
+
+        <EditText
+            android:id="@+id/tv_file_name"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="match_parent"
+            android:inputType="textAutoCorrect"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:gravity="center"
+            android:text="Play with Stickers"
+            android:background="@color/colorPrimaryDark"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_palette_black_24dp"
+            android:background="@color/colorPrimaryDark"/>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="11"
         android:layout_height="0dp">
 
         <ImageView
@@ -48,7 +85,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -56,7 +94,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:padding="1dp"
-            android:background="#FF00796B"
+            android:background="@color/colorLightPrimary"
             android:orientation="vertical">
 
             <EditText
@@ -66,7 +104,7 @@
                 android:inputType="textAutoCorrect"
                 android:maxLines="1"
                 android:imeOptions="actionDone"
-                android:textColorHint="#ffffff"
+                android:textColorHint="#000"
                 android:hint="Add top text here" />
 
             <EditText
@@ -76,7 +114,7 @@
                 android:inputType="textAutoCorrect"
                 android:maxLines="1"
                 android:imeOptions="actionDone"
-                android:textColorHint="#ffffff"
+                android:textColorHint="#000"
                 android:hint="Add bottom text here" />
         </LinearLayout>
 
@@ -84,7 +122,7 @@
             android:id="@+id/palette_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="#FF00796B"
+            android:background="@color/colorLightPrimary"
             android:src="@drawable/ic_palette_black_24dp" />
 
     </LinearLayout>
