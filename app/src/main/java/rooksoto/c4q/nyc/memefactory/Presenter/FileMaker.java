@@ -15,7 +15,6 @@ import java.io.FileOutputStream;
 
 public class FileMaker {
 
-    private final String IMAGE_FORMAT = "PNG";
     private static File memePic;
 
     public File makeMeme(View view, String fileName) {
@@ -33,7 +32,7 @@ public class FileMaker {
                     Environment.getExternalStorageDirectory().toString(),
                     fileName);
             FileOutputStream fileOutputStream = new FileOutputStream(memePic);
-            image.compress(Bitmap.CompressFormat.valueOf(IMAGE_FORMAT), 90, fileOutputStream);
+            image.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(view.getContext(), "Failed to create file", Toast.LENGTH_SHORT).show();
