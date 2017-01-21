@@ -67,8 +67,6 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
         loadStickerRecycler();
 
         iv_sticker = new StickerImageView(getActivity());
-        iv_sticker.setImageDrawable(getResources().getDrawable(R.drawable.smiley_face));
-        canvas.addView(iv_sticker);
     }
 
     private void loadStickerRecycler() {
