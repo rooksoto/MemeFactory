@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_top_buttons"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="8">
+
+        <EditText
+            android:gravity="center"
+            android:text="Play with Stickers"
+            android:id="@+id/tv_file_name"
+            android:layout_width="match_parent"
+            android:layout_weight="6"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"/>
+
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/my_sticker_frame"
+        android:layout_weight="6"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <ImageView
+            android:id="@+id/meme_sticker_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sticker_recycler"
+        android:background="@color/colorLightPrimary"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

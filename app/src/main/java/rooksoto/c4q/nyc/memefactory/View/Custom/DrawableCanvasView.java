@@ -33,6 +33,8 @@ public class DrawableCanvasView extends ImageView {
             paint.setStrokeWidth(width);
             paint.setColor(color);
             paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            paint.setStrokeCap(Paint.Cap.ROUND);
         }
     }
 
