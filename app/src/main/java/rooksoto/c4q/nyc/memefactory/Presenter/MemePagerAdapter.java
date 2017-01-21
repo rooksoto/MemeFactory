@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.MemePaintFragment;
+import rooksoto.c4q.nyc.memefactory.View.MemeFragments.StickerMemeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
 
 /**
@@ -14,7 +15,7 @@ import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
  */
 
 public class MemePagerAdapter extends FragmentPagerAdapter {
-    private static int PAGE_COUNT = 3;
+    private static int PAGE_COUNT = 4;
     private Uri uri;
 
     public MemePagerAdapter(FragmentManager fm, Uri uri) {
@@ -35,7 +36,9 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
             case 2:
-                return MemePaintFragment.newInstance(uri, 2, "Paint!");
+                return StickerMemeFragment.newInstance(uri, 2, "Sticker!");
+            case 3:
+                return MemePaintFragment.newInstance(uri, 3, "Paint!");
             default:
                 return null;
         }
@@ -49,6 +52,8 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return "Vanilla";
             case 2:
+                return "Sticker";
+            case 3:
                 return "Paint!";
             default:
                 return "Page" + position;
