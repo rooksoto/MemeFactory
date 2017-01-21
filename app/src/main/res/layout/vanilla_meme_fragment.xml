@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:src="@drawable/ic_palette_black_24dp" />
+            android:src="@drawable/ic_share_black_24dp" />
 
 
     </LinearLayout>
@@ -118,10 +118,9 @@
 
         <ImageButton
             android:id="@+id/palette_button"
-            android:layout_width="50dp"
+            android:layout_width="55dp"
             android:layout_height="match_parent"
-            android:background="@color/colorLightPrimary"
-            android:src="@drawable/ic_palette_black_24dp" />
+            android:background="@color/colorLightPrimary" />
 
     </LinearLayout>
 
