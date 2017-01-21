@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="8">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_top_buttons"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:weightSum="8">
+        android:orientation="horizontal">
 
         <TextView
-            android:text="File Name:"
-            android:gravity="center_horizontal|center_vertical"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"/>
-       <EditText
-           android:text="my_awesome_meme"
-           android:id="@+id/tv_file_name"
-           android:layout_width="0dp"
-           android:layout_weight="6"
-           android:layout_height="match_parent"
-           android:background="@color/colorPrimaryDark"/>
+            android:layout_weight="2"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="File Name:" />
 
+        <EditText
+            android:id="@+id/tv_file_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:background="@color/colorPrimaryDark"
+            android:text="my_paint_meme" />
+
+        <ImageButton
+            android:id="@+id/save_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark" />
 
     </LinearLayout>
 
@@ -36,117 +41,124 @@
         android:id="@+id/rl_export_meme"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6">
+        android:layout_weight="11">
 
         <rooksoto.c4q.nyc.memefactory.View.Custom.DrawableCanvasView
             android:id="@+id/dcv_drawable_canvas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"/>
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop" />
 
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_bottom_buttons"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
+        android:orientation="horizontal"
         android:weightSum="3">
 
         <android.support.v7.widget.CardView
-            android:layout_margin="1dp"
             android:id="@+id/cv_color"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="1dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorLightPrimary"
             app:cardCornerRadius="10dp">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:weightSum="2">
+
                 <TextView
-                    android:text="Color"
-                    android:gravity="bottom|center_horizontal"
-                    android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="Color"
+                    android:textColor="@color/colorPrimaryText" />
+
                 <ImageView
                     android:id="@+id/iv_button_color"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_margin="1dp"
             android:id="@+id/cv_stroke"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="1dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorLightPrimary"
             app:cardCornerRadius="10dp">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:weightSum="2">
+
                 <TextView
-                    android:text="Stroke Width"
-                    android:gravity="bottom|center_horizontal"
-                    android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="Stroke Width"
+                    android:textColor="@color/colorPrimaryText" />
+
                 <ImageView
                     android:id="@+id/iv_button_stroke"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_margin="1dp"
             android:id="@+id/cv_save"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="1dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorLightPrimary"
             app:cardCornerRadius="10dp">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:weightSum="2">
+
                 <TextView
-                    android:text="Save"
-                    android:gravity="bottom|center_horizontal"
-                    android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:gravity="bottom|center_horizontal"
+                    android:text="Save"
+                    android:textColor="@color/colorPrimaryText" />
+
                 <ImageView
                     android:id="@+id/iv_button_save"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
-
 
 
     </LinearLayout>
