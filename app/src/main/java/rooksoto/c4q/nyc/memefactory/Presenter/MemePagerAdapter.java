@@ -16,6 +16,9 @@ import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
 public class MemePagerAdapter extends FragmentPagerAdapter {
     private static int PAGE_COUNT = 3;
     private Uri uri;
+    private DogeFragment dogeFrag;
+    private VanillaMemeFragment vanillaFrag;
+    private MemePaintFragment paintFrag;
 
     public MemePagerAdapter(FragmentManager fm, Uri uri) {
         super(fm);
@@ -31,11 +34,14 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return DogeFragment.newInstance(uri, 0, "Doge");
+                dogeFrag = DogeFragment.newInstance(uri, 0, "Doge");
+                return dogeFrag;
             case 1:
-                return VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
+                vanillaFrag = VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
+                return vanillaFrag;
             case 2:
-                return MemePaintFragment.newInstance(uri, 2, "Paint!");
+                paintFrag = MemePaintFragment.newInstance(uri, 2, "Paint!");
+                return paintFrag;
             default:
                 return null;
         }
@@ -54,4 +60,20 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
                 return "Page" + position;
         }
     }
+
+//    @Override
+//    public Object instantiateItem(ViewGroup container, int position) {
+//        Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
+//        switch (position) {
+//            case 0:
+//                dogeFrag = (DogeFragment) createdFragment;
+//                break;
+//            case 1:
+//                vanillaFrag = (VanillaMemeFragment) createdFragment;
+//                break;
+//            case 2:
+//                paintFrag = (MemePaintFragment) createdFragment;
+//        }
+//        return createdFragment;
+//    }
 }
