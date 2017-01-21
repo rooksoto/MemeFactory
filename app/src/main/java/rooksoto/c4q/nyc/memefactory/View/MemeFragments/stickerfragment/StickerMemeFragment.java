@@ -1,4 +1,4 @@
-package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
+package rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment;
 
 import android.net.Uri;
 import android.os.Bundle;

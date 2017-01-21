@@ -1,4 +1,4 @@
-package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
+package rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +15,14 @@ import rooksoto.c4q.nyc.memefactory.R;
  */
 public class StickerAdapter extends RecyclerView.Adapter<StickerViewHolder> {
     private Listener mListener;
-    private List<Integer> stickerDrawableList = Arrays.asList(R.drawable.smiley_face, R.drawable.devil_imp, R.drawable.angry_face, R.drawable.lion, R.drawable.mouse, R.drawable.panda, R.drawable.kiss_face);
+    private List<Integer> stickerDrawableList = Arrays.asList(R.drawable.smiley_face,
+            R.drawable.devil_imp,
+            R.drawable.angry_face,
+            R.drawable.lion,
+            R.drawable.mouse,
+            R.drawable.panda,
+            R.drawable.kiss_face,
+            R.drawable.scumbag_steve);
 
     public StickerAdapter(Listener mListener) {
         this.mListener = mListener;

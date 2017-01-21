@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.MemePaintFragment;
-import rooksoto.c4q.nyc.memefactory.View.MemeFragments.StickerMemeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
 
 /**

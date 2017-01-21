@@ -1,4 +1,4 @@
-package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
+package rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,7 +15,6 @@ public class StickerViewHolder extends RecyclerView.ViewHolder {
     public StickerViewHolder(View itemView) {
         super(itemView);
         myStickerImage  = (ImageView) itemView.findViewById(R.id.sticker_imagev);
-
     }
 
     public void bind(Integer integer) {
