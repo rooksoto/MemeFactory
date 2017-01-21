@@ -31,6 +31,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
 
     public static final String DOGE_PAGE = "DOGE PAGE NUM";
     public static final String DOGE_TITLE = "DOGE TITLE";
+    public static final String PIC_URI = "PICTURE URI";
     Uri uri;
     Float dX;
     Float dY;
@@ -41,6 +42,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     private View rootView;
     private List<EditText> captionTvs = new ArrayList<>();
     private RelativeLayout rootLayout;
+    private EditText tvFileName;
 
 
     public static DogeFragment newInstance(Uri uri, int page, String title) {
@@ -49,6 +51,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
         Bundle args = new Bundle();
         args.putInt(DOGE_PAGE, page);
         args.putString(DOGE_TITLE, title);
+        args.putParcelable(PIC_URI, uri);
         dogeFragment.setArguments(args);
         return dogeFragment;
     }
@@ -59,11 +62,13 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
         super.onCreate(savedInstanceState);
         page = getArguments().getInt(DOGE_PAGE, 0);
         title = getArguments().getString(DOGE_TITLE);
+        uri = getArguments().getParcelable(PIC_URI);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
+        rootView = inflater.inflate(R.layout.fragment_doge, container, false);
+        tvFileName = (EditText) rootView.findViewById(R.id.tv_file_name);
         imageView = (ImageView) rootView.findViewById(R.id.meme_photo_IView);
         Picasso.with(rootView.getContext()).load(uri).error(R.drawable.doge).into(imageView);
         return rootView;
@@ -108,7 +113,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     }
 
     private void addCaption(View view) {
-        rootLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_layout);
+        rootLayout = (RelativeLayout) rootView.findViewById(R.id.layout_iv);
         Typeface typeface = Typeface.createFromAsset(view.getContext().getAssets(), "LDFComicSans.ttf");
 
         EditText captionText = new EditText(view.getContext());
