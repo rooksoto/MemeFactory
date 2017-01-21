@@ -1,89 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/ll_top_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="File Name:" />
+
+        <EditText
+            android:id="@+id/tv_file_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@color/colorPrimaryDark"
+            android:imeOptions="actionDone"
+            android:inputType="textAutoCorrect"
+            android:maxLines="1"
+            android:text="vanilla_meme" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_palette_black_24dp" />
+
+
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_weight="11">
 
         <ImageView
             android:id="@+id/meme_imageview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/top_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:gravity="center"
             android:shadowColor="#000000"
             android:shadowDx="5.5"
             android:shadowDy="5.5"
             android:shadowRadius="5.0"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
             android:textSize="60sp"
-            android:gravity="center" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/bottom_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:gravity="center"
             android:shadowColor="#000000"
             android:shadowDx="5.0"
             android:shadowDy="5.0"
             android:shadowRadius="5.5"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
-            android:gravity="center" />
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:background="#FF00796B"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="@color/colorLightPrimary"
+            android:orientation="vertical"
+            android:padding="1dp">
 
             <EditText
                 android:id="@+id/top_text_editor"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:hint="Add top text here"
+                android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
-                android:textColorHint="#ffffff"
-                android:hint="Add top text here" />
+                android:textColorHint="#000" />
 
             <EditText
                 android:id="@+id/bottom_text_editor"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:hint="Add bottom text here"
+                android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
-                android:textColorHint="#ffffff"
-                android:hint="Add bottom text here" />
+                android:textColorHint="#000" />
         </LinearLayout>
 
         <ImageButton
             android:id="@+id/palette_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:background="#FF00796B"
+            android:background="@color/colorLightPrimary"
             android:src="@drawable/ic_palette_black_24dp" />
 
     </LinearLayout>

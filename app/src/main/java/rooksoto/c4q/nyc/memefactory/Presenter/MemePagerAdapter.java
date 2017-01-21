@@ -4,10 +4,12 @@ import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.MemePaintFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
+import rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment.StickerMemeFragment;
 
 /**
  * Created by huilin on 1/14/17.
@@ -16,6 +18,10 @@ import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
 public class MemePagerAdapter extends FragmentPagerAdapter {
     private static int PAGE_COUNT = 4;
     private Uri uri;
+    private DogeFragment dogeFrag;
+    private VanillaMemeFragment vanillaFrag;
+    private MemePaintFragment paintFrag;
+    private StickerMemeFragment stickerFrag;
 
     public MemePagerAdapter(FragmentManager fm, Uri uri) {
         super(fm);
@@ -31,13 +37,17 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return DogeFragment.newInstance(uri, 0, "Doge");
+                dogeFrag = DogeFragment.newInstance(uri, 0, "Doge");
+                return dogeFrag;
             case 1:
-                return VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
+                vanillaFrag = VanillaMemeFragment.newInstance(uri, 1, "Vanilla");
+                return vanillaFrag;
             case 2:
-                return StickerMemeFragment.newInstance(uri, 2, "Sticker!");
+                stickerFrag = StickerMemeFragment.newInstance(uri, 2, "Sticker!");
+                return stickerFrag;
             case 3:
-                return MemePaintFragment.newInstance(uri, 3, "Paint!");
+                paintFrag = MemePaintFragment.newInstance(uri, 3, "Paint!");
+                return paintFrag;
             default:
                 return null;
         }
@@ -57,5 +67,25 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
             default:
                 return "Page" + position;
         }
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
+        switch (position) {
+            case 0:
+                dogeFrag = (DogeFragment) createdFragment;
+                break;
+            case 1:
+                vanillaFrag = (VanillaMemeFragment) createdFragment;
+                break;
+            case 2:
+                stickerFrag = (StickerMemeFragment) createdFragment;
+                break;
+            case 3:
+                paintFrag = (MemePaintFragment) createdFragment;
+                break;
+        }
+        return createdFragment;
     }
 }

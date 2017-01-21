@@ -1,12 +1,9 @@
 package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +17,8 @@ import com.squareup.picasso.Picasso;
 
 import rooksoto.c4q.nyc.memefactory.GenericTextWatcher;
 import rooksoto.c4q.nyc.memefactory.R;
+
+import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_URI;
 
 public class VanillaMemeFragment extends Fragment implements View.OnTouchListener {
 
@@ -44,6 +43,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         Bundle args = new Bundle();
         args.putInt(VAN_PAGE, page);
         args.putString(VAN_TITLE, title);
+        args.putParcelable(PIC_URI, uri);
         vanillaMemeFragment.setArguments(args);
         return vanillaMemeFragment;
     }
@@ -53,6 +53,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         super.onCreate(savedInstanceState);
         page = getArguments().getInt(VAN_PAGE, 0);
         title = getArguments().getString(VAN_TITLE);
+        uri = getArguments().getParcelable(PIC_URI);
     }
 
     @Override
@@ -102,5 +103,20 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("memeImageUri", uri);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            Uri memeImageUri = (Uri) savedInstanceState.get("memeImageUri");
+            Picasso.with(getContext()).load(memeImageUri).into(memeImageView);
+        }
     }
 }

@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 import rooksoto.c4q.nyc.memefactory.R;
 import rooksoto.c4q.nyc.memefactory.util.StickerImageView;
 
+import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_URI;
+
 /**
  * Created by ashiquechowdhury on 1/21/17.
  */
@@ -37,6 +39,7 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
         Bundle args = new Bundle();
         args.putInt(VAN_PAGE, page);
         args.putString(VAN_TITLE, title);
+        args.putParcelable(PIC_URI, uri);
         stickerMemeFragment.setArguments(args);
         return stickerMemeFragment;
     }
@@ -44,6 +47,7 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        uri = getArguments().getParcelable(PIC_URI);
     }
 
     @Override
