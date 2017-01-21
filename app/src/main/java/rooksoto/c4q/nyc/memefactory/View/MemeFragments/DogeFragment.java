@@ -27,7 +27,7 @@ import rooksoto.c4q.nyc.memefactory.R;
  * Created by huilin on 1/14/17.
  */
 
-public class DogeFragment extends Fragment implements View.OnTouchListener, View.OnLongClickListener {
+public class DogeFragment extends Fragment implements View.OnTouchListener, View.OnClickListener {
 
     public static final String DOGE_PAGE = "DOGE PAGE NUM";
     public static final String DOGE_TITLE = "DOGE TITLE";
@@ -40,7 +40,9 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     private ImageView imageView;
     private View rootView;
     private List<EditText> captionTvs = new ArrayList<>();
-    private RelativeLayout rootLayout;
+    private RelativeLayout secondLayout;
+    private ImageView penView;
+    private RelativeLayout secView;
 
 
     public static DogeFragment newInstance(Uri uri, int page, String title) {
@@ -65,6 +67,8 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.meme_photo_IView);
+        penView = (ImageView) rootView.findViewById(R.id.write_ic_IV);
+//        secView = (RelativeLayout) rootView.findViewById(R.id.memeImg_layout);
         Picasso.with(rootView.getContext()).load(uri).error(R.drawable.doge).into(imageView);
         return rootView;
     }
@@ -72,7 +76,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView.setOnLongClickListener(this);
+        penView.setOnClickListener(this);
     }
 
 
@@ -102,20 +106,20 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     }
 
     @Override
-    public boolean onLongClick(View view) {
+    public void onClick(View view) {
         addCaption(view);
-        return true;
+
     }
 
     private void addCaption(View view) {
-        rootLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_layout);
+        secondLayout = (RelativeLayout) rootView.findViewById(R.id.memeImg_layout);
         Typeface typeface = Typeface.createFromAsset(view.getContext().getAssets(), "LDFComicSans.ttf");
 
         EditText captionText = new EditText(view.getContext());
         createCaption(view, typeface, captionText);
         captionText.setOnTouchListener(this);
 
-        rootLayout.addView(captionText);
+        secondLayout.addView(captionText);
 
         captionTvs.add(captionText);
     }

@@ -15,5 +15,6 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .add(R.id.main_fragment_holder, new StartScreenFragment())
                 .commit();
+
     }
 }

@@ -3,11 +3,22 @@
     android:id="@+id/fragment_layout"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
+    android:weightSum="1"
+    android:background="@color/colorLightPrimary">
+    <ImageView
+        android:id="@+id/write_ic_IV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_write"/>
+    <RelativeLayout
+        android:id="@+id/memeImg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/write_ic_IV">
     <ImageView
         android:id="@+id/meme_photo_IView"
         android:layout_width="match_parent"
-        android:layout_height="429dp"
-        android:gravity="center_vertical" />
+        android:layout_height="match_parent" />
+    </RelativeLayout>
 </RelativeLayout>
