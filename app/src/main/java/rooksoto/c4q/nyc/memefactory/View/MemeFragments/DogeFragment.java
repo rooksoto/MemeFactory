@@ -1,5 +1,8 @@
 package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,9 +11,15 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import rooksoto.c4q.nyc.memefactory.R;
 
@@ -18,7 +27,7 @@ import rooksoto.c4q.nyc.memefactory.R;
  * Created by huilin on 1/14/17.
  */
 
-public class DogeFragment extends Fragment implements View.OnTouchListener {
+public class DogeFragment extends Fragment implements View.OnTouchListener, View.OnLongClickListener {
 
     public static final String DOGE_PAGE = "DOGE PAGE NUM";
     public static final String DOGE_TITLE = "DOGE TITLE";
@@ -29,6 +38,9 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     private String title;
     private int page;
     private ImageView imageView;
+    private View rootView;
+    private List<EditText> captionTvs = new ArrayList<>();
+    private RelativeLayout rootLayout;
 
 
     public static DogeFragment newInstance(Uri uri, int page, String title) {
@@ -51,7 +63,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
+        rootView = inflater.inflate(R.layout.activity_meme_photo, container, false);
         imageView = (ImageView) rootView.findViewById(R.id.meme_photo_IView);
         Picasso.with(rootView.getContext()).load(uri).error(R.drawable.doge).into(imageView);
         return rootView;
@@ -60,9 +72,9 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageView.setOnTouchListener(this);
-
+        imageView.setOnLongClickListener(this);
     }
+
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
@@ -87,5 +99,35 @@ public class DogeFragment extends Fragment implements View.OnTouchListener {
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        addCaption(view);
+        return true;
+    }
+
+    private void addCaption(View view) {
+        rootLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_layout);
+        Typeface typeface = Typeface.createFromAsset(view.getContext().getAssets(), "LDFComicSans.ttf");
+
+        EditText captionText = new EditText(view.getContext());
+        createCaption(view, typeface, captionText);
+        captionText.setOnTouchListener(this);
+
+        rootLayout.addView(captionText);
+
+        captionTvs.add(captionText);
+    }
+
+    private void createCaption(View view, Typeface typeface, EditText captionText) {
+        captionText.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        captionText.setBackgroundColor(Color.TRANSPARENT);
+        captionText.setTypeface(typeface);
+        captionText.setText(" ");
+        captionText.requestFocus();
+        ((InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
+                .toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                        InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 }
