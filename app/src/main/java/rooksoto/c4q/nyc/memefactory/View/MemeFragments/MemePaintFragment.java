@@ -32,6 +32,8 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
 
     private static final String MPF_PAGE = "MPF PAGE NUM";
     private static final String MPF_TITLE = "MPF TITLE";
+    public static final String PIC_URI = "PICTURE URI";
+
     private Uri uri;
 
     private DrawableCanvasView drawableCanvasView;
@@ -61,6 +63,7 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
         Bundle args = new Bundle();
         args.putInt(MPF_PAGE, page);
         args.putString(MPF_TITLE, title);
+        args.putParcelable(PIC_URI, uri);
         memePaintFragment.setArguments(args);
         return memePaintFragment;
     }
@@ -70,6 +73,8 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         page = getArguments().getInt(MPF_PAGE, 0);
         title = getArguments().getString(MPF_TITLE);
+        uri = getArguments().getParcelable(PIC_URI);
+
     }
 
     @Override
