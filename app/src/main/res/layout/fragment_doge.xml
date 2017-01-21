@@ -109,12 +109,15 @@
                 android:weightSum="2">
 
                 <TextView
+                    android:text="Doge"
+                    android:gravity="bottom|center_horizontal"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="bottom|center_horizontal"
+                    android:layout_weight="1" />
+                    <!--android:gravity="bottom|center_horizontal"
                     android:text="Stroke Width"
-                    android:textColor="@color/colorPrimaryText" />
+                    android:textColor="@color/colorPrimaryText" />-->
 
                 <ImageView
                     android:id="@+id/iv_button_stroke"
