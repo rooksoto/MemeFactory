@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:text="Alpha"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_alpha" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:id="@+id/sb_alpha"
+                android:max="255"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Red"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_red" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:id="@+id/sb_red"
+                android:max="255"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Green"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_green" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:id="@+id/sb_green"
+                android:max="255"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Blue"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_blue" />
+
+            <SeekBar
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:id="@+id/sb_blue"
+                android:max="255"
+                android:layout_weight="1"/>
+
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tableLayout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/v_color_preview" />
+
+    <TextView
+        android:text="Select"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:id="@+id/tv_select_color"
+        android:layout_below="@+id/v_color_preview"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"/>
+
+</RelativeLayout>
