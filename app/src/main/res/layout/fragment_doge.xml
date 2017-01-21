@@ -100,7 +100,7 @@
                 android:layout_height="match_parent"
                 android:weightSum="2">
                 <TextView
-                    android:text="Stroke Width"
+                    android:text="Doge"
                     android:gravity="bottom|center_horizontal"
                     android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
