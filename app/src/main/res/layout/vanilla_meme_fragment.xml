@@ -27,8 +27,7 @@
             android:shadowDy="5.5"
             android:shadowRadius="5.0"
             android:textSize="60sp"
-            android:gravity="center"
-            android:text="I swear"/>
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/bottom_text_view"
@@ -42,30 +41,51 @@
             android:shadowDy="5.0"
             android:shadowRadius="5.5"
             android:textSize="30sp"
-            android:gravity="center"
-            android:text="I had something for this, I kid you not mofo man"/>
+            android:gravity="center" />
 
     </RelativeLayout>
 
-
-    <EditText
-        android:id="@+id/top_text_editor"
-        android:hint="Add top text here"
-        android:textColorHint="#ffffff"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="text"
-        android:maxLines="1"
-        android:imeOptions="actionDone"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/bottom_text_editor"
-        android:hint="Add bottom text here"
-        android:textColorHint="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="text"
-        android:maxLines="1"
-        android:imeOptions="actionDone"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:background="#FF00796B"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/top_text_editor"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textAutoCorrect"
+                android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:textColorHint="#ffffff"
+                android:hint="Add top text here" />
+
+            <EditText
+                android:id="@+id/bottom_text_editor"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textAutoCorrect"
+                android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:textColorHint="#ffffff"
+                android:hint="Add bottom text here" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/palette_button"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#FF00796B"
+            android:src="@drawable/ic_palette_black_24dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

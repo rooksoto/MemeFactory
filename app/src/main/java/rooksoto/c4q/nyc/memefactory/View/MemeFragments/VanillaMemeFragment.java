@@ -1,26 +1,36 @@
 package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import rooksoto.c4q.nyc.memefactory.GenericTextWatcher;
 import rooksoto.c4q.nyc.memefactory.R;
 
 public class VanillaMemeFragment extends Fragment implements View.OnTouchListener {
 
     public static final String VAN_PAGE = "VANILLA PAGE NUM";
     public static final String VAN_TITLE = "VANILLA TITLE";
+    private ImageView memeImageView;
     private TextView topTextView;
     private TextView bottomTextView;
+    private EditText topTextEditor;
+    private EditText bottomTextEditor;
+    private ImageButton paletteButton;
 
     private int page;
     private String title;
@@ -49,13 +59,18 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.vanilla_meme_fragment, container, false);
 
-        ImageView memeImageView = (ImageView) view.findViewById(R.id.meme_imageview);
+        memeImageView = (ImageView) view.findViewById(R.id.meme_imageview);
 
         topTextView = (TextView) view.findViewById(R.id.top_text_view);
         bottomTextView = (TextView) view.findViewById(R.id.bottom_text_view);
 
-        EditText topTextEditor = (EditText) view.findViewById(R.id.top_text_editor);
-        EditText bottomTextEditor = (EditText) view.findViewById(R.id.bottom_text_editor);
+        topTextEditor = (EditText) view.findViewById(R.id.top_text_editor);
+        bottomTextEditor = (EditText) view.findViewById(R.id.bottom_text_editor);
+
+        topTextEditor.addTextChangedListener(new GenericTextWatcher(topTextView, topTextEditor));
+        bottomTextEditor.addTextChangedListener(new GenericTextWatcher(bottomTextView, bottomTextEditor));
+
+        paletteButton = (ImageButton) view.findViewById(R.id.palette_button);
 
         Picasso.with(getContext()).load(uri).error(R.drawable.doge).into(memeImageView);
 
@@ -67,6 +82,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         super.onViewCreated(view, savedInstanceState);
         topTextView.setOnTouchListener(this);
         bottomTextView.setOnTouchListener(this);
+//        paletteButton
     }
 
     @Override
