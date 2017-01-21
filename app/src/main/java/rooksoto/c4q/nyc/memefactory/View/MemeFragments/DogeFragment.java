@@ -1,6 +1,7 @@
 package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +40,7 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
     private ImageView imageView;
     private View rootView;
     private List<EditText> captionTvs = new ArrayList<>();
+    private RelativeLayout rootLayout;
 
 
     public static DogeFragment newInstance(Uri uri, int page, String title) {
@@ -102,19 +103,31 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
 
     @Override
     public boolean onLongClick(View view) {
-        Toast.makeText(view.getContext(), "EditText should appear here", Toast.LENGTH_LONG).show();
-        RelativeLayout myLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_layout);
-        EditText captionText = new EditText(view.getContext());
+        addCaption(view);
+        return true;
+    }
+
+    private void addCaption(View view) {
+        rootLayout = (RelativeLayout) rootView.findViewById(R.id.fragment_layout);
         Typeface typeface = Typeface.createFromAsset(view.getContext().getAssets(), "LDFComicSans.ttf");
+
+        EditText captionText = new EditText(view.getContext());
+        createCaption(view, typeface, captionText);
+        captionText.setOnTouchListener(this);
+
+        rootLayout.addView(captionText);
+
+        captionTvs.add(captionText);
+    }
+
+    private void createCaption(View view, Typeface typeface, EditText captionText) {
         captionText.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        myLayout.addView(captionText);
+        captionText.setBackgroundColor(Color.TRANSPARENT);
         captionText.setTypeface(typeface);
+        captionText.setText(" ");
+        captionText.requestFocus();
         ((InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
                 .toggleSoftInput(InputMethodManager.SHOW_FORCED,
                         InputMethodManager.HIDE_IMPLICIT_ONLY);
-        captionText.requestFocus();
-        captionText.setOnTouchListener(this);
-        captionTvs.add(captionText);
-        return true;
     }
 }
