@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -102,5 +103,20 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
                 return false;
         }
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("memeImageUri", uri);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            Uri memeImageUri = (Uri) savedInstanceState.get("memeImageUri");
+            Picasso.with(getContext()).load(memeImageUri).into(memeImageView);
+        }
     }
 }
