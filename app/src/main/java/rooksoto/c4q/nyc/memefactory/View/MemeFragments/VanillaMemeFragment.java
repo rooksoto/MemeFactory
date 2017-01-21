@@ -83,7 +83,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         super.onViewCreated(view, savedInstanceState);
         topTextView.setOnTouchListener(this);
         bottomTextView.setOnTouchListener(this);
-//        paletteButton
+        Picasso.with(getContext()).load(R.drawable.palette).resize(90, 90).into(paletteButton);
     }
 
     @Override
