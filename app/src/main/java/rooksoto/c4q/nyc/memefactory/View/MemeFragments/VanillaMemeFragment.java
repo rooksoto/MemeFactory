@@ -99,7 +99,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         bottomTextView = (TextView) rootView.findViewById(R.id.bottom_text_view);
         topTextEditor = (EditText) rootView.findViewById(R.id.top_text_editor);
         bottomTextEditor = (EditText) rootView.findViewById(R.id.bottom_text_editor);
-//        saveButton = (ImageButton) rootView.findViewById(R.id.save_button);
+        saveButton = (ImageButton) rootView.findViewById(R.id.save_button);
         layoutToShare = (RelativeLayout) rootView.findViewById(R.id.vanilla_viewgroup);
         shareButton = (ImageButton) rootView.findViewById(R.id.vanilla_share_button);
     }
