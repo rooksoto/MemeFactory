@@ -1,9 +1,16 @@
 package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,26 +18,34 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+
 import rooksoto.c4q.nyc.memefactory.GenericTextWatcher;
 import rooksoto.c4q.nyc.memefactory.R;
 
+import static android.content.ContentValues.TAG;
 import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_URI;
 
 public class VanillaMemeFragment extends Fragment implements View.OnTouchListener {
 
     public static final String VAN_PAGE = "VANILLA PAGE NUM";
     public static final String VAN_TITLE = "VANILLA TITLE";
+    //
+    private View rootView;
     private ImageView memeImageView;
     private TextView topTextView;
     private TextView bottomTextView;
     private EditText topTextEditor;
     private EditText bottomTextEditor;
     private ImageButton paletteButton;
-
+    private ImageButton shareButton;
+    private RelativeLayout layoutToShare;
+    //
     private int page;
     private String title;
     private Uri uri;
@@ -58,24 +73,34 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.vanilla_meme_fragment, container, false);
-
-        memeImageView = (ImageView) view.findViewById(R.id.meme_imageview);
-
-        topTextView = (TextView) view.findViewById(R.id.top_text_view);
-        bottomTextView = (TextView) view.findViewById(R.id.bottom_text_view);
-
-        topTextEditor = (EditText) view.findViewById(R.id.top_text_editor);
-        bottomTextEditor = (EditText) view.findViewById(R.id.bottom_text_editor);
-
+        rootView = inflater.inflate(R.layout.vanilla_meme_fragment, container, false);
+        //
+        initViews();
+        //
         topTextEditor.addTextChangedListener(new GenericTextWatcher(topTextView, topTextEditor));
         bottomTextEditor.addTextChangedListener(new GenericTextWatcher(bottomTextView, bottomTextEditor));
 
-        paletteButton = (ImageButton) view.findViewById(R.id.palette_button);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareImage();
+            }
+        });
 
         Picasso.with(getContext()).load(uri).error(R.drawable.doge).into(memeImageView);
 
-        return view;
+        return rootView;
+    }
+
+    private void initViews() {
+        memeImageView = (ImageView) rootView.findViewById(R.id.meme_imageview);
+        topTextView = (TextView) rootView.findViewById(R.id.top_text_view);
+        bottomTextView = (TextView) rootView.findViewById(R.id.bottom_text_view);
+        topTextEditor = (EditText) rootView.findViewById(R.id.top_text_editor);
+        bottomTextEditor = (EditText) rootView.findViewById(R.id.bottom_text_editor);
+        paletteButton = (ImageButton) rootView.findViewById(R.id.palette_button);
+        layoutToShare = (RelativeLayout) rootView.findViewById(R.id.vanilla_viewgroup);
+        shareButton = (ImageButton) rootView.findViewById(R.id.vanilla_share_button);
     }
 
     @Override
@@ -105,18 +130,57 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         return true;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable("memeImageUri", uri);
+    private void shareImage() {
+        try {
+            Bitmap bitmap = getBitmapFromView(layoutToShare);
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, getImageUri(getContext(), bitmap));
+            shareIntent.setType("image/jpeg");
+            startActivity(Intent.createChooser(shareIntent, "Share image using "));
+        }catch (Exception e){
+            e.getMessage();
+        }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            Uri memeImageUri = (Uri) savedInstanceState.get("memeImageUri");
-            Picasso.with(getContext()).load(memeImageUri).into(memeImageView);
+    private Bitmap getBitmapFromView(View view) {
+        try {
+            view.setDrawingCacheEnabled(true);
+
+            view.buildDrawingCache();
+            //Define a bitmap with the same size as the view
+            Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+            //Bind a canvas to it
+            Canvas canvas = new Canvas(returnedBitmap);
+            //Get the view's background
+            Drawable bgDrawable = view.getBackground();
+            if (bgDrawable != null) {
+                //has background drawable, then draw it on the canvas
+                bgDrawable.draw(canvas);
+            } else {
+                //does not have background drawable, then draw white background on the canvas
+                canvas.drawColor(Color.WHITE);
+            }
+            // draw the view on the canvas
+            view.draw(canvas);
+            //return the bitmap
+            return returnedBitmap;
+        }catch (Exception e){
+            Log.e(TAG, "getBitmapFromView: ", e);
         }
+        return null;
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),
+                    inImage, "", "");
+            return Uri.parse(path);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return null;
     }
 }
