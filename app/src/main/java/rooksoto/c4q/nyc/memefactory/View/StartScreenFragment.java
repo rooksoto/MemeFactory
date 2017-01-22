@@ -1,6 +1,8 @@
 package rooksoto.c4q.nyc.memefactory.View;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import rooksoto.c4q.nyc.memefactory.R;
@@ -110,6 +113,29 @@ public class StartScreenFragment extends Fragment {
             intent.putExtra(IMAGEURI, imageUri);
             startActivity(intent);
             Toast.makeText(getContext(), "Saved to Gallery", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),
+                    inImage, "", "");
+            return Uri.parse(path);
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return null;
+    }
+
+    public void storeMeme(Bitmap bm) {
+        try {
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bm, "", "");
+
+            Toast.makeText(this.getContext(), "Saved!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this.getContext(), "Error saving.", Toast.LENGTH_SHORT).show();
         }
     }
 }

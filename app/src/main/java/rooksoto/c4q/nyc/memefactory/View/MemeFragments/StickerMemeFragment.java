@@ -19,8 +19,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
@@ -37,6 +37,7 @@ import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_U
  */
 
 public class StickerMemeFragment extends Fragment implements StickerAdapter.Listener {
+    private ImageButton savedButton;
     public static final String VAN_PAGE = "STICKER PAGE NUM";
     public static final String VAN_TITLE = "STICKER TITLE";
     StickerAdapter.Listener mListener;
@@ -72,6 +73,7 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
         canvas = (FrameLayout) view.findViewById(R.id.my_sticker_frame);
         stickerRecycler = (RecyclerView) view.findViewById(R.id.sticker_recycler);
         stickerShareButton = (ImageButton) view.findViewById(R.id.sticker_share_button);
+        savedButton = (ImageButton) view.findViewById(R.id.sticker_save_button);
         return view;
     }
 
@@ -88,6 +90,13 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
             @Override
             public void onClick(View view) {
                 shareImage();
+            }
+        });
+        Picasso.with(getContext()).load(R.drawable.save).resize(64, 64).into(savedButton);
+        savedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                storeMeme(getBitmapFromView(canvas));
             }
         });
 
@@ -122,6 +131,16 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
             startActivity(Intent.createChooser(shareIntent, "Share image using "));
         }catch (Exception e){
             e.getMessage();
+        }
+    }
+
+    public void storeMeme(Bitmap bm) {
+        try {
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bm, "", "");
+
+            Toast.makeText(this.getContext(), "Saved!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this.getContext(), "Error saving.", Toast.LENGTH_SHORT).show();
         }
     }
 
