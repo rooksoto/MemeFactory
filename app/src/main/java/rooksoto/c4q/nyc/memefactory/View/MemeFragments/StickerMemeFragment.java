@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
@@ -101,7 +102,7 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
     }
 
     private void loadMemeImage() {
-        Glide.with(getContext()).load(uri).into(memeImageView);
+        Picasso.with(getContext()).load(uri).into(memeImageView);
     }
 
     @Override

@@ -109,7 +109,7 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
         });
 
         drawableCanvasView = (DrawableCanvasView) rootView.findViewById(R.id.dcv_drawable_canvas);
-        Glide.with(rootView.
+        Picasso.with(rootView.
                 getContext()).
                 load(uri).
                 into(drawableCanvasView)
