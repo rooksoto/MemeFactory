@@ -37,7 +37,7 @@ import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_U
  */
 
 public class StickerMemeFragment extends Fragment implements StickerAdapter.Listener {
-    private ImageButton savedButton;
+//    private ImageButton savedButton;
     public static final String VAN_PAGE = "STICKER PAGE NUM";
     public static final String VAN_TITLE = "STICKER TITLE";
     StickerAdapter.Listener mListener;
@@ -73,7 +73,7 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
         canvas = (FrameLayout) view.findViewById(R.id.my_sticker_frame);
         stickerRecycler = (RecyclerView) view.findViewById(R.id.sticker_recycler);
         stickerShareButton = (ImageButton) view.findViewById(R.id.sticker_share_button);
-        savedButton = (ImageButton) view.findViewById(R.id.sticker_save_button);
+//        savedButton = (ImageButton) view.findViewById(R.id.sticker_save_button);
         return view;
     }
 
@@ -92,13 +92,13 @@ public class StickerMemeFragment extends Fragment implements StickerAdapter.List
                 shareImage();
             }
         });
-        Picasso.with(getContext()).load(R.drawable.save).resize(64, 64).into(savedButton);
-        savedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                storeMeme(getBitmapFromView(canvas));
-            }
-        });
+//        Picasso.with(getContext()).load(R.drawable.save).resize(64, 64).into(savedButton);
+//        savedButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                storeMeme(getBitmapFromView(canvas));
+//            }
+//        });
 
     }
 
