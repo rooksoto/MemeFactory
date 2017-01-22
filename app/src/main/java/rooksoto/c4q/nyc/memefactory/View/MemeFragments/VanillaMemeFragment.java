@@ -25,7 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
-import rooksoto.c4q.nyc.memefactory.GenericTextWatcher;
+import rooksoto.c4q.nyc.memefactory.util.GenericTextWatcher;
 import rooksoto.c4q.nyc.memefactory.R;
 
 import static android.content.ContentValues.TAG;
