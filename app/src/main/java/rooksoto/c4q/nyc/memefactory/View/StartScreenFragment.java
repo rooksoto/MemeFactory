@@ -36,6 +36,7 @@ public class StartScreenFragment extends Fragment {
     private ImageView memeLogoIView;
     private ImageView cameraIView;
     private ImageView galleryIView;
+    private Uri imageUri;
 
     @Nullable
     @Override
@@ -75,6 +76,9 @@ public class StartScreenFragment extends Fragment {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(
                         getContext(),
                         getContext().getApplicationContext().getPackageName() + ".provider", output));
+                imageUri = FileProvider.getUriForFile(
+                        getContext(),
+                        getContext().getApplicationContext().getPackageName() + ".provider", output);
                 startActivityForResult(intent, CAMERA_REQUEST_CODE);
             }
         };
@@ -102,6 +106,9 @@ public class StartScreenFragment extends Fragment {
         }
 
         if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST_CODE) {
+            Intent intent = new Intent(getContext(), MemeEditorActivity.class);
+            intent.putExtra(IMAGEURI, imageUri);
+            startActivity(intent);
             Toast.makeText(getContext(), "Saved to Gallery", Toast.LENGTH_LONG).show();
         }
     }
