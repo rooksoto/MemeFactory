@@ -45,12 +45,6 @@
         android:layout_height="0dp"
         android:layout_weight="11">
 
-        <ImageView
-            android:id="@+id/meme_imageview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
-
         <TextView
             android:id="@+id/top_text_view"
             android:layout_width="match_parent"
@@ -79,6 +73,14 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/meme_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -92,13 +94,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorLightPrimary"
-            android:orientation="vertical"
-            android:padding="1dp">
+            android:orientation="vertical">
 
             <EditText
+                android:layout_weight="1"
                 android:id="@+id/top_text_editor"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="0dp"
                 android:hint="Add top text here"
                 android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect"
@@ -106,9 +108,10 @@
                 android:textColorHint="#000" />
 
             <EditText
+                android:layout_weight="1"
                 android:id="@+id/bottom_text_editor"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="0dp"
                 android:hint="Add bottom text here"
                 android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect"
@@ -122,7 +125,6 @@
             android:layout_height="match_parent"
             android:background="@color/colorLightPrimary"
             android:src="@drawable/ic_palette_black_24dp" />
-
     </LinearLayout>
 
 </LinearLayout>

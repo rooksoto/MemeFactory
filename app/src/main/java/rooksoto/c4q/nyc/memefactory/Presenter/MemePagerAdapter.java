@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.MemePaintFragment;
 import rooksoto.c4q.nyc.memefactory.View.MemeFragments.VanillaMemeFragment;
-import rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment.StickerMemeFragment;
+import rooksoto.c4q.nyc.memefactory.View.MemeFragments.StickerMemeFragment;
 
 /**
  * Created by huilin on 1/14/17.

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sticker_imagev"
     android:orientation="vertical"
+    android:layout_centerInParent="true"
     android:src="@drawable/smiley_face"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_margin="8dp">
+    android:padding="10dp"
+    android:layout_width="75dp"
+    android:layout_height="75dp">
 </ImageView>

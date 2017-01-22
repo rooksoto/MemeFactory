@@ -1,4 +1,4 @@
-package rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment;
+package rooksoto.c4q.nyc.memefactory.View.MemeFragments;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import rooksoto.c4q.nyc.memefactory.R;
+import rooksoto.c4q.nyc.memefactory.View.MemeFragments.rviewsticker.StickerAdapter;
 import rooksoto.c4q.nyc.memefactory.util.StickerImageView;
 
 import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_URI;
@@ -22,7 +23,7 @@ import static rooksoto.c4q.nyc.memefactory.View.MemeFragments.DogeFragment.PIC_U
  * Created by ashiquechowdhury on 1/21/17.
  */
 
-public class StickerMemeFragment extends Fragment implements StickerAdapter.Listener{
+public class StickerMemeFragment extends Fragment implements StickerAdapter.Listener {
     public static final String VAN_PAGE = "STICKER PAGE NUM";
     public static final String VAN_TITLE = "STICKER TITLE";
     StickerAdapter.Listener mListener;

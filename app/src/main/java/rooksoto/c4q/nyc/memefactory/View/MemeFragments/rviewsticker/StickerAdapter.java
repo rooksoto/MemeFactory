@@ -1,4 +1,4 @@
-package rooksoto.c4q.nyc.memefactory.View.MemeFragments.stickerfragment;
+package rooksoto.c4q.nyc.memefactory.View.MemeFragments.rviewsticker;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
