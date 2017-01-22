@@ -29,6 +29,7 @@
             android:text="my_awesome_meme" />
 
         <ImageButton
+            android:id="@+id/dodge_share_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
