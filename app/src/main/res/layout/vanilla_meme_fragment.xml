@@ -119,7 +119,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/palette_button"
+            android:id="@+id/save_button"
             android:layout_width="55dp"
             android:layout_height="match_parent"
             android:background="@color/colorLightPrimary" />

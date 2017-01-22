@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -145,8 +146,9 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
                 showStrokeDialog();
                 break;
             case R.id.cv_save:
-                FileMaker fileMaker = new FileMaker();
-                fileMaker.makeMeme(drawableCanvasView, tvFileName.getText() + ".jpg");
+//                FileMaker fileMaker = new FileMaker();
+//                fileMaker.makeMeme(drawableCanvasView, tvFileName.getText() + ".jpg");
+                storeMeme(getBitmapFromView(rlExportMeme));
                 break;
             case R.id.tv_select_color:
                 SeekBar sbAlpha = (SeekBar) dialogInterface.findViewById(R.id.sb_alpha);
@@ -321,5 +323,15 @@ public class MemePaintFragment extends Fragment implements View.OnClickListener 
             e.getMessage();
         }
         return null;
+    }
+
+    public void storeMeme(Bitmap bm) {
+        try {
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bm, "", "");
+
+            Toast.makeText(this.getContext(), "Saved!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this.getContext(), "Error saving.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

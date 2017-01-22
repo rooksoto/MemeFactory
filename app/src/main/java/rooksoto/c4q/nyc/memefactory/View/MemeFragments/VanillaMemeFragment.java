@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -42,7 +43,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
     private TextView bottomTextView;
     private EditText topTextEditor;
     private EditText bottomTextEditor;
-    private ImageButton paletteButton;
+    private ImageButton saveButton;
     private ImageButton shareButton;
     private RelativeLayout layoutToShare;
     //
@@ -98,7 +99,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         bottomTextView = (TextView) rootView.findViewById(R.id.bottom_text_view);
         topTextEditor = (EditText) rootView.findViewById(R.id.top_text_editor);
         bottomTextEditor = (EditText) rootView.findViewById(R.id.bottom_text_editor);
-        paletteButton = (ImageButton) rootView.findViewById(R.id.palette_button);
+        saveButton = (ImageButton) rootView.findViewById(R.id.save_button);
         layoutToShare = (RelativeLayout) rootView.findViewById(R.id.vanilla_viewgroup);
         shareButton = (ImageButton) rootView.findViewById(R.id.vanilla_share_button);
     }
@@ -108,7 +109,13 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
         super.onViewCreated(view, savedInstanceState);
         topTextView.setOnTouchListener(this);
         bottomTextView.setOnTouchListener(this);
-        Picasso.with(getContext()).load(R.drawable.palette).resize(90, 90).into(paletteButton);
+        Picasso.with(getContext()).load(R.drawable.save).resize(90, 90).into(saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                storeMeme(getBitmapFromView(layoutToShare));
+            }
+        });
     }
 
     @Override
@@ -159,7 +166,7 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
                 bgDrawable.draw(canvas);
             } else {
                 //does not have background drawable, then draw white background on the canvas
-                canvas.drawColor(Color.WHITE);
+                canvas.drawColor(Color.parseColor("#FF757575"));
             }
             // draw the view on the canvas
             view.draw(canvas);
@@ -182,5 +189,15 @@ public class VanillaMemeFragment extends Fragment implements View.OnTouchListene
             e.getMessage();
         }
         return null;
+    }
+
+    public void storeMeme(Bitmap bm) {
+        try {
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bm, "", "");
+
+            Toast.makeText(this.getContext(), "Saved!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this.getContext(), "Error saving.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
