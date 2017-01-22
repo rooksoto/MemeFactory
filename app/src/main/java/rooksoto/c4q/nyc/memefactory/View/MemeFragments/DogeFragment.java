@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -33,7 +34,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import rooksoto.c4q.nyc.memefactory.Presenter.FileMaker;
 import rooksoto.c4q.nyc.memefactory.R;
 
 import static android.content.ContentValues.TAG;
@@ -219,8 +219,9 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
                 showColorDialog();
                 break;
             case R.id.cv_save:
-                FileMaker fileMaker = new FileMaker();
-                fileMaker.makeMeme(rootView, tvFileName.getText() + ".jpg");
+//                FileMaker fileMaker = new FileMaker();
+//                fileMaker.makeMeme(rootView, tvFileName.getText() + ".jpg");
+                storeMeme(getBitmapFromView(rootLayout));
                 break;
             case R.id.tv_select_color:
                 SeekBar sbAlpha = (SeekBar) dialogInterface.findViewById(R.id.sb_alpha);
@@ -317,5 +318,15 @@ public class DogeFragment extends Fragment implements View.OnTouchListener, View
             e.getMessage();
         }
         return null;
+    }
+
+    public void storeMeme(Bitmap bm) {
+        try {
+            MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bm, "", "");
+
+            Toast.makeText(this.getContext(), "Saved!", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this.getContext(), "Error saving.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
