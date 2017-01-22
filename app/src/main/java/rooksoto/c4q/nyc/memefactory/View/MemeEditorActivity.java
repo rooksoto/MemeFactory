@@ -28,7 +28,6 @@ public class MemeEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vpager_photo);
 
-
         memeImageUri = getIntent().getParcelableExtra(StartScreenFragment.IMAGEURI);
 
         vPager = (ViewPager) findViewById(R.id.vpager_photo);
@@ -51,7 +50,7 @@ public class MemeEditorActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean dispatchTouchEvent (MotionEvent event){
+        public boolean dispatchTouchEvent (MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 View v = getCurrentFocus();
                 if (v instanceof EditText) {

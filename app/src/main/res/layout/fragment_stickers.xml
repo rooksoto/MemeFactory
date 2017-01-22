@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/ll_top_buttons"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -19,40 +20,48 @@
             android:text="File Name:" />
 
         <EditText
-            android:gravity="center"
-            android:text="Play_with_Stickers"
             android:id="@+id/tv_file_name"
             android:layout_width="0dp"
-            android:layout_weight="5"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"/>
+            android:layout_weight="5"
+            android:background="@color/colorPrimaryDark"
+            android:text="sticker_meme" />
 
         <ImageButton
+            android:id="@+id/sticker_share_button"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_palette_black_24dp"
-            android:background="@color/colorPrimaryDark"/>
-
-
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_share_black_24dp" />
+        <ImageButton
+            android:id="@+id/sticker_save_button"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/my_sticker_frame"
-        android:layout_weight="11"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_weight="11">
+
         <ImageView
             android:id="@+id/meme_sticker_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
     </FrameLayout>
 
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/sticker_recycler"
-        android:background="@color/colorLightPrimary"
         android:layout_weight="2"
+        android:id="@+id/sticker_recycler"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="0dp"
+        android:background="@color/colorLightPrimary"></android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

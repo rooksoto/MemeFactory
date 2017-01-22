@@ -1,4 +1,4 @@
-package rooksoto.c4q.nyc.memefactory;
+package rooksoto.c4q.nyc.memefactory.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;

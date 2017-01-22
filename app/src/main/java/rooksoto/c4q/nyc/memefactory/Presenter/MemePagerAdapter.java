@@ -88,4 +88,5 @@ public class MemePagerAdapter extends FragmentPagerAdapter {
         }
         return createdFragment;
     }
+
 }

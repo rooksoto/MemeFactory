@@ -29,11 +29,12 @@
             android:text="my_paint_meme" />
 
         <ImageButton
-            android:id="@+id/save_view"
+            android:id="@+id/paint_share_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_share_black_24dp" />
 
     </LinearLayout>
 

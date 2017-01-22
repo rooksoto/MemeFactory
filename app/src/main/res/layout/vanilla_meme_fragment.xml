@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_top_buttons"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -21,65 +20,69 @@
             android:text="File Name:" />
 
         <EditText
-            android:id="@+id/tv_file_name"
+            android:id="@+id/file_name_tv"
             android:layout_width="0dp"
-            android:layout_weight="5"
             android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@color/colorPrimaryDark"
+            android:imeOptions="actionDone"
             android:inputType="textAutoCorrect"
             android:maxLines="1"
-            android:imeOptions="actionDone"
-            android:gravity="center"
-            android:text="Vanilla_Meme"
-            android:background="@color/colorPrimaryDark"/>
+            android:text="vanilla_meme" />
 
         <ImageButton
+            android:id="@+id/vanilla_share_button"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_palette_black_24dp"
-            android:background="@color/colorPrimaryDark"/>
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_share_black_24dp" />
 
 
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/vanilla_viewgroup"
         android:layout_width="match_parent"
-        android:layout_weight="11"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_weight="11">
 
         <ImageView
             android:id="@+id/meme_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/top_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:gravity="center"
             android:shadowColor="#000000"
             android:shadowDx="5.5"
             android:shadowDy="5.5"
             android:shadowRadius="5.0"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
             android:textSize="60sp"
-            android:gravity="center" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/bottom_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
+            android:gravity="center"
             android:shadowColor="#000000"
             android:shadowDx="5.0"
             android:shadowDy="5.0"
             android:shadowRadius="5.5"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
-            android:gravity="center" />
+            android:textStyle="bold" />
+
 
     </RelativeLayout>
 
@@ -91,40 +94,40 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_weight="1"
             android:background="@color/colorLightPrimary"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="2">
 
             <EditText
                 android:id="@+id/top_text_editor"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Add top text here"
+                android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
-                android:textColorHint="#000"
-                android:hint="Add top text here" />
+                android:textColorHint="#000" />
 
             <EditText
                 android:id="@+id/bottom_text_editor"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Add bottom text here"
+                android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect"
                 android:maxLines="1"
-                android:imeOptions="actionDone"
-                android:textColorHint="#000"
-                android:hint="Add bottom text here" />
+                android:textColorHint="#000" />
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/palette_button"
-            android:layout_width="50dp"
+            android:id="@+id/save_button"
+            android:layout_width="55dp"
             android:layout_height="match_parent"
-            android:background="@color/colorLightPrimary"
-            android:src="@drawable/ic_palette_black_24dp" />
-
+            android:background="@color/colorLightPrimary" />
     </LinearLayout>
 
 </LinearLayout>
