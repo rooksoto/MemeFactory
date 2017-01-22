@@ -111,7 +111,7 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:text="Doge"
+                    android:text="Size"
                     android:gravity="bottom|center_horizontal"
                     android:textColor="@color/colorPrimaryText"
                     android:layout_width="match_parent"
@@ -120,12 +120,20 @@
                     <!--android:gravity="bottom|center_horizontal"
                     android:text="Stroke Width"
                     android:textColor="@color/colorPrimaryText" />-->
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
                 <ImageView
-                    android:id="@+id/iv_button_stroke"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/decrease"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/increase"/>
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -22,7 +22,11 @@ public class StickerAdapter extends RecyclerView.Adapter<StickerViewHolder> {
             R.drawable.mouse,
             R.drawable.panda,
             R.drawable.kiss_face,
-            R.drawable.scumbag_steve);
+            R.drawable.scumbag_steve,
+            R.drawable.doge_cap,
+            R.drawable.doge_side_look,
+            R.drawable.dogestix
+    );
 
     public StickerAdapter(Listener mListener) {
         this.mListener = mListener;
